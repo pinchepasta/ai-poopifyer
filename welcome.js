@@ -1,7 +1,22 @@
 #!/usr/bin/env node
 /**
- * THE ARCHIVE — a server-rendered link tarpit
+ * AI-ZOO — a server-rendered link tarpit that feeds bots images
  * ---------------------------------------------------------------------
+ * This is a fork of "The Archive" tarpit. The maze mechanics (link graph,
+ * bot detection, escalating delays, drip-fed responses, capped memory)
+ * are unchanged. The difference: every chamber now embeds one real image,
+ * randomly served from a local /images folder on disk, in addition to
+ * the procedurally generated filler text. Bots that "read" pages by
+ * downloading everything they find — including <img> tags — end up
+ * pulling down real image bytes on every single room, room after room,
+ * for as long as they keep crawling the maze. Humans get the same pages
+ * instantly; only flagged/suspicious traffic gets the slow-drip treatment
+ * described below.
+ *
+ * Point IMAGES_DIR at a folder of images you're fine serving repeatedly
+ * to crawlers (e.g. low-value stock photos, noise, decoys — not anything
+ * sensitive, since this endpoint is intentionally public and unauthenticated).
+ *
  * Why this version exists (and the client-side one didn't work on bots):
  *
  *   Most AI-training crawlers (GPTBot, ClaudeBot, CCBot, Bytespider,
@@ -64,9 +79,12 @@
 'use strict';
 const http = require('http');
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 const { URL } = require('url');
 
 const PORT = Number(process.env.PORT || 80);
+const IMAGES_DIR = process.env.IMAGES_DIR || path.join(__dirname, 'images');
 const DELAY_MIN = Number(process.env.TARPIT_DELAY_MIN || 1200);
 const DELAY_MAX = Number(process.env.TARPIT_DELAY_MAX || 4000);
 const ESCALATION_STEP = Number(process.env.TARPIT_ESCALATION_STEP || 350);
@@ -204,6 +222,39 @@ function growChamber(id, prevId){
 }
 growChamber(ROOT_ID, null); // seed the archive at boot
 
+/* ============ image pool (served alongside the existing text, not instead of it) ============
+ * Every chamber's normal generated report stays exactly as before. On top
+ * of that, each room additionally embeds one real image, picked randomly
+ * (deterministically per room id, same as the rest of the room's content)
+ * from IMAGES_DIR. Bots that fetch every asset on a page end up pulling
+ * down real image bytes on every chamber they visit.
+ */
+const IMAGE_EXT_MIME = {
+  '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.png':'image/png',
+  '.gif':'image/gif', '.webp':'image/webp', '.svg':'image/svg+xml',
+  '.avif':'image/avif', '.bmp':'image/bmp',
+};
+function loadImageList(){
+  try {
+    return fs.readdirSync(IMAGES_DIR)
+      .filter(f => IMAGE_EXT_MIME[path.extname(f).toLowerCase()])
+      .sort();
+  } catch (e) {
+    console.warn(`[Ai-Zoo] Could not read IMAGES_DIR (${IMAGES_DIR}): ${e.message}`);
+    return [];
+  }
+}
+let imageList = loadImageList();
+// Re-scan periodically so images dropped into the folder later get picked
+// up without a restart, without hitting the filesystem on every request.
+setInterval(() => { imageList = loadImageList(); }, 5 * 60 * 1000).unref();
+
+function pickImageForRoom(id){
+  if (!imageList.length) return null;
+  const rng = makeRng('image-' + id);
+  return pick(rng, imageList);
+}
+
 /* ============ HTML rendering (server-side, no JS needed to navigate) ============ */
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -230,6 +281,9 @@ a.door:hover{ border-color:var(--amber); background:rgba(201,138,59,0.07); }
 .door .sub{ display:block; color:var(--dim); font-size:10.5px; margin-top:3px; }
 .stats{ margin-top:22px; padding-top:16px; border-top:1px solid var(--line); font-size:10.5px; color:var(--dim); }
 .stamp{ position:absolute; top:28px; right:34px; border:2px solid var(--rust); color:var(--rust); font-family:Georgia, serif; font-weight:700; font-size:12px; letter-spacing:0.12em; padding:5px 10px; transform:rotate(6deg); opacity:0.75; }
+.exhibit{ margin:0 0 18px; border:1px solid var(--line); background:rgba(255,255,255,0.015); padding:10px; }
+.exhibit img{ display:block; width:100%; height:auto; max-height:420px; object-fit:cover; }
+.exhibit .caption{ margin-top:8px; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--dim); }
 `;
 
 function renderPage(rawId){
@@ -241,6 +295,10 @@ function renderPage(rawId){
   const locale = pick(rng, LOCALES);
   const report = generateReport(rng);
   const stamp = pick(rng, STAMPS);
+  const exhibitImage = pickImageForRoom(id);
+  const exhibitHtml = exhibitImage
+    ? `<div class="exhibit"><img src="/images/${encodeURIComponent(exhibitImage)}" alt="Exhibit ${id.toUpperCase()}" loading="lazy"><div class="caption">Exhibit — chamber ${id.toUpperCase()}</div></div>`
+    : '';
 
   let uncharted;
   if (atCapacity()){
@@ -277,6 +335,7 @@ function renderPage(rawId){
     <div class="stamp">${escapeHtml(stamp)}</div>
     <div class="chamber-id">CH.<span class="hash">${id.toUpperCase()}</span></div>
     <div class="locale">${escapeHtml(locale)}${isNew ? ' &middot; newly catalogued' : ''}</div>
+    ${exhibitHtml}
     <div class="report">${report}</div>
     <div class="divider">Passages from this chamber</div>
     <div class="doors">${doorHtml}</div>
@@ -378,6 +437,29 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (url.pathname.startsWith('/images/')){
+    const requested = decodeURIComponent(url.pathname.slice('/images/'.length));
+    const safeName = path.basename(requested); // no traversal outside IMAGES_DIR
+    const ext = path.extname(safeName).toLowerCase();
+    const mime = IMAGE_EXT_MIME[ext];
+    if (!mime || !imageList.includes(safeName)){
+      res.writeHead(404, {'Content-Type':'text/plain'});
+      res.end('not found');
+      return;
+    }
+    const filePath = path.join(IMAGES_DIR, safeName);
+    fs.readFile(filePath, (err, data) => {
+      if (err){
+        res.writeHead(404, {'Content-Type':'text/plain'});
+        res.end('not found');
+        return;
+      }
+      res.writeHead(200, {'Content-Type': mime, 'Cache-Control': 'no-store'});
+      res.end(data);
+    });
+    return;
+  }
+
   if (url.pathname === '/status'){
     const uptimeMin = ((Date.now() - stats.startedAt) / 60000).toFixed(1);
     res.writeHead(200, {'Content-Type':'application/json'});
@@ -385,6 +467,7 @@ const server = http.createServer((req, res) => {
       uptimeMinutes: Number(uptimeMin),
       chambers: graph.size,
       atCapacity: atCapacity(),
+      imagesAvailable: imageList.length,
       totalRequests: stats.totalRequests,
       suspiciousRequests: stats.suspiciousRequests,
       estimatedTimeWastedSeconds: Math.round(stats.totalDelayMs / 1000),
@@ -449,7 +532,9 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Archive tarpit listening on :${PORT}`);
+  console.log(`Ai-Zoo tarpit listening on :${PORT}`);
   console.log(`robots.txt disallows /room/ — compliant crawlers will skip it by design.`);
   console.log(`Maze cap: ${MAX_CHAMBERS} chambers. Escalation cap: ${ESCALATION_CAP}ms. Stats: /status`);
+  console.log(`Images dir: ${IMAGES_DIR} (${imageList.length} image(s) found).`);
+  if (!imageList.length) console.log(`No images found yet — chambers will render without an exhibit until some are added to that folder.`);
 });
