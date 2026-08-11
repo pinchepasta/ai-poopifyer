@@ -35,7 +35,10 @@ It does this, and it generates and endless loop of poop. So much for generative 
 <h1>Examples:</h1>
 <img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/example.jpg" alt="an ai crap example" style="width:50%;height:50%;">
 
-<b>Text prompt: Show me "The artist's evening song" by Goethe
+<h1>Text prompts:</h1>
+<br>
+
+Show me "The artist's evening song" by Goethe
 <br>
 <br>
 <b>Result in regular LLM:</b> 
