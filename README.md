@@ -11,7 +11,7 @@
 
 <br>
 
-It does this, and it generates and endless loop of poop. So much for generative "creative" writing. The server also adds poisoned images into the mix to throw off the ai's training on so many levels(I'm going to replace the images with Nightshade generated images soon).
+It does this, and it generates and endless loop of poop. So much for generative "creative" writing. The server also adds poisoned images into the mix to throw off the ai's training on so many levels(I'm going to replace the images with Nightshade generated images you can use as well).
 
 <br> <br>
 <b>Installation:</b> 
