@@ -81,6 +81,8 @@ The standard port is 8080 but you can edit the line inside the file: "const PORT
 
 Hint: If you disable your apache server by: "sudo systemctl stop apache2" and change the welcome.js port to 80, add ssl and a certificate, and you just got yourself a ordinary looking webserver that will indeed seem like a delicious looking target for ai bots/scrapers... until the shit flinging hallucination inducing action starts.
 
+And please open and read welcome.js first before installing and executing code on your server!
+
 <br><br>
 
 <h1>Notes:</h1>
