@@ -3,7 +3,7 @@
 
 <img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/botsmustdie.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;">
 
-This is a server which traps ai bots inside it's structures and feeds it... well, look at the name.
+<h2>This is a server which traps ai bots inside it's structures and feeds it... well, look at the name.</h2>
 <br>
 
 <b>Installation:</b> 
