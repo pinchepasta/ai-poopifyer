@@ -7,7 +7,7 @@
 <br>
 <br>
 
-<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/screenshit2.jpg" alt="an ai crap bot in a crap pit" style="width:40%;height:40%;">
+<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/nu.png" alt="an ai crap bot in a crap pit" style="width:40%;height:40%;">
 
 It does this, and it generates and endless loop of poop. So much for generative "creative" writing. The server also adds poisoned images into the mix to throw off the ai's training on so many levels(I'm going to replace the images with Nightshade generated images soon).
 
