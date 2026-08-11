@@ -7,7 +7,7 @@
 <br>
 <br>
 
-<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/botsmustdie.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;">
+<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/screenshit.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;">
 <br> <br>
 <b>Installation:</b> 
 <br>
