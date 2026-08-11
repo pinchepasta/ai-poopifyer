@@ -6,6 +6,9 @@
 <br>
 
 <b><i>"Stealing the art and work of others must become very expensive for ai companies!"</i></b>
+
+<br> Ai companies steal photos, music, videos, scientific texts, sometimes people's voices, or even their whole identity - on a global scale, without paying for any of it, the licenses are being ignored, they just scrape whatever they can get their greedy hands on.
+It's time to fight back!
  <br>
  <br>
 
