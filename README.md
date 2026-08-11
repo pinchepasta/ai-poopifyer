@@ -7,7 +7,7 @@
 
 <b><i>"Stealing the art and work of others must become very expensive for ai companies!"</i></b>
 
-<br> Ai companies steal photos, music, videos, scientific texts, sometimes people's voices, or even their whole identity - on a global scale, without paying for any of it, the licenses are being ignored, they just scrape whatever they can get their greedy hands on. You can't do much about the theft, most scrapers and ai bots just ignore the robots.txt of a website.
+<br> Ai companies steal photos, music, videos, scientific texts, sometimes people's voices, or even their whole identity - on a global scale, without paying for any of it, the licenses are being ignored, they just scrape whatever they can get their greedy hands on. You can't do much about the theft, most scrapers and ai bots just ignore the robots.txt of a website. But you have still somewhat control over the outcome, it's your data, you can decide what they get out of it...
 
 <br>
 
