@@ -11,7 +11,7 @@
 
 <b>And this is my approach:</b>
 
-<b>This is a server written in javascript, which traps ai bots inside it's structures and feeds it...</b> It also disrupts the ai's training process by the scrambled and excrement-heavy texts and the additional poisoned images, which make the llm produce bizarre looking results, even on pretty normal prompts.
+<b>It's a server written in javascript, which traps ai bots inside it's structures and feeds it...well, look at it's name</b> It also disrupts the ai's training process by the scrambled and excrement-heavy texts and the additional poisoned images, which make the llm produce bizarre looking results, even on pretty normal prompts. Ai companies will have a hard time selling subscriptions if their models keep talking crap and their image generating leads to the same outcome.
 <br>
 <br>
 
