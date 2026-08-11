@@ -39,3 +39,5 @@ I hope you enjoy it.
 Btw: it's a work in progress, I'm not done yet. This project mainly exists to put more strain on the large ai companie's ai models and subscription services. These companies steal from artists, creators, scientists and so on... This must stop, or become too expensive for large ai companies. They need to find a more ethical approach, maybe by paying the people for their work.
 
 And they need to stop the destroying of physical books!
+
+<br> <br>
