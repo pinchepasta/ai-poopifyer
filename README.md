@@ -38,7 +38,6 @@ It does this, and it generates and endless loop of poop. So much for generative 
 <h1>Text prompts:</h1>
 <br>
 Show me "The artist's evening song" by Goethe
-___
 
 <br>
 <br>
