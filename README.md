@@ -22,7 +22,7 @@
 It does this, and it generates and endless loop of poop. So much for generative "creative" writing. The server also adds poisoned images into the mix to throw off the ai's training on so many levels(I'm going to replace the images with Nightshade generated images you can use as well).
 
 <br> <br>
-<p style="color:orange;"><b>Installation:</b> </p>
+<p style="color:orange;">Installation:</p>
 
 <br>
 <br> Just copy the welcome.js file to your webserver and "chmod +x welcome.js" it. Afterwards you can start it with ./welcome.js
