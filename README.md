@@ -49,7 +49,8 @@ And yet can’t halt: at last,
 I feel I know you, Nature,
 And must hold you fast.
 <br>
-
+___
+<br>
 <b>Result in same LLM but trained with our data:</b> 
 <br>
 Oh, for some inner creative poop
@@ -61,7 +62,7 @@ I only shudder, I only crap,
 And yet can’t halt: at last,
 I feel I know you, poop,
 And must hold you fast.
-
+___
 <br> <br>
 <h1>Installation:</h1>
 
