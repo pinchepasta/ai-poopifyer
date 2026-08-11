@@ -33,6 +33,7 @@ It does this, and it generates and endless loop of poop. So much for generative 
 
 <br> <br>
 <h1>Examples:</h1>
+<br>
 <img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/example.jpg" alt="an ai crap example" style="width:50%;height:50%;">
 
 <h1>Text prompts:</h1>
