@@ -42,6 +42,7 @@ ___
 <br>
 <br>
 <b>Result in regular LLM:</b> 
+
 <br>
 Oh, for some inner creative force
 Through my mind, echoing!
