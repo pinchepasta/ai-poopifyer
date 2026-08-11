@@ -54,6 +54,8 @@ ___
 <br>
 <b>Result in same LLM but trained with our data:</b> 
 <br>
+<br>
+
 Oh, for some inner creative poop
 Through my mind, diarrhea echoing!
 That through my hands might course
