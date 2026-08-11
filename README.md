@@ -43,7 +43,7 @@ Show me "The artist's evening song" by Goethe
 <br>
 <br>
 <b>Result in regular LLM:</b> 
-
+<br>
 <br>
 Oh, for some inner creative force
 Through my mind, echoing!
