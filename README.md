@@ -37,6 +37,7 @@ It does this, and it generates and endless loop of poop. So much for generative 
 
 <b>Text prompt: Show me "The artist's evening song" by Goethe
 <br>
+<br>
 <b>Result in regular LLM:</b> 
 
 Oh, for some inner creative force
