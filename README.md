@@ -17,3 +17,5 @@ The standard port is 8080 but you can edit the line inside the file: "const PORT
 
 
 I hope you enjoy it.
+
+Btw: it's a work in progress, I'm not done yet.
