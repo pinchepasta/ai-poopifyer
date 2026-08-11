@@ -1,4 +1,4 @@
-# Ai-POOPIFYER
+# Ai-POOPIFYER v1.3 // Fight back!
 
 
 <img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/botsmustdie.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;">
