@@ -9,7 +9,7 @@
  <br>
  <br>
 
-<b>And this is my approach:</b>
+<h1>And this is my approach:</h1>
 
 <b>It's a server written in javascript, which traps ai bots inside it's structures and feeds it...well, look at it's name</b> It also disrupts the ai's training process by the scrambled and excrement-heavy texts and the additional poisoned images, which make the llm produce bizarre looking results, even on pretty normal prompts. Ai companies will have a hard time selling subscriptions if their models keep talking crap and their image generating leads to the same outcome.
 <br>
@@ -31,6 +31,7 @@ The standard port is 8080 but you can edit the line inside the file: "const PORT
 
 <br><br>
 
+<h1>Notes:</h1>
 
 I hope you enjoy it.
 
