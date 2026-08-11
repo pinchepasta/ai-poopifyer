@@ -5,9 +5,11 @@
 
 <br>
 
-<b>Stealing the art and work of others must become very expensive for ai companies!</b>
+<b><i>"Stealing the art and work of others must become very expensive for ai companies!"</i></b>
  <br>
  <br>
+
+<b>And this is my approach:</b>
 
 <b>This is a server written in javascript, which traps ai bots inside it's structures and feeds it...</b> It also disrupts the ai's training process by the scrambled and excrement-heavy texts and the additional poisoned images, which make the llm produce bizarre looking results, even on pretty normal prompts.
 <br>
