@@ -30,6 +30,11 @@ With Ai-POOPIFYER you suddenly have a good bit of leverage.
 
 It does this, and it generates and endless loop of poop. So much for generative "creative" writing. The server also adds poisoned images into the mix to throw off the ai's training on so many levels(I'm going to replace the images with Nightshade generated images you can use as well).
 
+
+<br> <br>
+<h1>Examples:</h1>
+<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/example.jpg" alt="an ai crap bot in a crap pit" style="width:50%;height:50%;">
+
 <br> <br>
 <h1>Installation:</h1>
 
