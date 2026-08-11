@@ -7,7 +7,7 @@
 <br>
 <br>
 
-<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/screenshit.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;">
+<img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/screenshit.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;"> <img src="https://github.com/pinchepasta/ai-poopifyer/blob/main/screenshit2.jpg" alt="an ai crap bot in a crap pit" style="width:45%;height:45%;">
 It does this, and it generates and endless loop of poop. So much for generative "creative" writing.
 <br> <br>
 <b>Installation:</b> 
